@@ -1,0 +1,112 @@
+<div>
+  <div>
+    <h1>
+      Movie #<%= @the_movie.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/movies">
+          Go back
+        </a>
+      </div>
+
+<!--6 We revise this route in order to adhere to the RESTful API change we made in routes.rb. Unfortunately, HTML only has POST and GET requests. Fortunately, we can use a new attribute for the <a> tag to send a DELETE request. LOOK BELOW.-->
+      <div>
+        <a href="/movies/<%= @the_movie.id %>" data-turbo-method="delete">
+          Delete movie
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_movie.title %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_movie.description %>
+      </dd>
+
+      <dt>
+        Released
+      </dt>
+      <dd>
+        <%= @the_movie.released %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_movie.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_movie.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<!--14 Recreate what we did for the index.html file and create a new route for the EDITING form in this file. SEARCH routes.rb to follow the flow of rewriting.-->
+<!--<div>
+  <div>
+    <h2>
+      Edit movie
+    </h2>
+
+
+    <form action="/movies/<%#= @the_movie.id %>"  method="post" data-turbo="false">
+
+    7 In this form, we should create some CSRF anti-measures as well.-->
+<!--      <input type="hidden" name="authenticity_token" value="<%#= form_authenticity_token %>">
+
+      8 Now we need to add more tricks since HTML can NOT send PATCH requests. The rest is back-end RAILS magic to make the update feature work. SEARCH routes.rb -->
+<!--      <input type="hidden" name="_method" value="patch">
+
+
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%#= @the_movie.title %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%#= @the_movie.description %></textarea>
+      </div>
+
+      <div>
+        <input type="checkbox" id="released_box" name="query_released" value="1" <%#= "checked" if @the_movie.released %>>
+
+        <label for="released_box">
+            Released
+        </label>
+      </div>
+
+      <button>
+        Update movie
+      </button>
+    </form>
+  </div>
+</div>-->
+
+<hr>

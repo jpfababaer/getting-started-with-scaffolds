@@ -1,0 +1,39 @@
+<!--21 Copy paste the ADD form into this webpage so that the user can properly sign the form. However, this time, the valid input fields will already have their values prepopulated based off their previous input.-->
+<h2>
+  Add a new movie
+</h2>
+
+<!--22 Now instead of making a new webpage that repopulates the form and for adding movies, we can use this concept and apply it to an existing html = new.html. When create fails a validation, we can instead redirect it to new.html and apply the same features we have here. SEARCH movies/new-->
+<% @the_movie.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+<% end %>
+
+<form action="/movies" method="post" data-turbo="false">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <div>
+    <label for="title_box">
+      Title
+    </label>
+
+    <input type="text" id="title_box" name="query_title" value="<%= @the_movie.title %>">
+  </div>
+
+  <div>
+    <label for="description_box">
+      Description
+    </label>
+
+    <textarea id="description_box" name="query_description" rows="3"><%= @the_movie.description %></textarea>
+  </div>
+
+  <div>
+    <input type="checkbox" id="released_box" name="query_released" value="1">
+
+    <label for="released_box">Released</label>
+  </div>
+
+  <button>
+    Create movie
+  </button>
+</form>
